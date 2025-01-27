@@ -1,22 +1,36 @@
-import { Text, TextInput, TouchableOpacity, View } from "react-native"
-import { styles } from "./styles"
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
-export default function Home() {
-  function handleAddParticipant() {
-    console.log("Adicionar")
+import { styles } from "./styles";
+
+export function Home() {
+  
+  function handleParticipantAdd() {
+    console.log("Você clicou no botão de Adicionar!");
   }
+
   return (
     <View style={styles.container}>
       <Text style={styles.eventName}>
-        Data do Evento
+        Nome do evento
       </Text>
+
       <Text style={styles.eventDate}>
-        Sábado, 25 de Janeiro de 2025
+        Sexta, 4 de Novembro de 2022.
       </Text>
-      <TextInput style={styles.input} placeholder="Nome do participante" placeholderTextColor="#6B6B6B" />
-      <TouchableOpacity style={styles.button} onPress={handleAddParticipant}>
-        <Text style={styles.buttonText}>+</Text>
-      </TouchableOpacity>
+
+      <View style={styles.form}>
+        <TextInput 
+          style={styles.input}
+          placeholder="Nome do participante"
+          placeholderTextColor="#6B6B6B"
+        />
+        
+        <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
+          <Text style={styles.buttonText}>
+            +
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
