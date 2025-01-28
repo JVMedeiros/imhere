@@ -1,17 +1,29 @@
-import { FlatList, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Participant } from "../components/Participant";
 
 import { styles } from "./styles";
 
 export function Home() {
-  const participants = ['João Medeiros', 'Bruna Chagas', 'Douglas Queiroz', 'Gabriel Medeiros', 'Guilherme Gallina', 'Gustavo Medeiros', 'Graça Medeiros', 'Leonardo Almeida', 'Mariana Campos', 'Danilo Campos', 'Luiza Satie', 'Leticia Chagas'];
+  const participants = ['Joao Medeiros', 'Bruna Chagas', 'Douglas Queiroz', 'Gabriel Medeiros', 'Guilherme Gallina', 'Gustavo Medeiros', 'Graça Medeiros', 'Leonardo Almeida', 'Mariana Campos', 'Danilo Campos', 'Luiza Satie', 'Leticia Chagas'];
   
   function handleParticipantAdd() {
+    if(participants.includes('Joao Medeiros')) {
+      return Alert.alert("João Medeiros já está na lista de presença.");
+    }
     console.log("Você clicou no botão de Adicionar!");
   }
 
-  function handleParticipantRemove() {
-    console.log("Você clicou no botão de Remover!");
+  function handleParticipantRemove(name: string) {
+    Alert.alert("Remover", `Remover o participante ${name}?`, [
+      {
+        text: 'Sim',
+        onPress: () => Alert.alert("Deletado!")
+      },
+      {
+        text: 'Não',
+        style: 'cancel'
+      }
+    ])
   }
 
   return (
@@ -41,7 +53,7 @@ export function Home() {
         data={participants}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <Participant name={item} onRemove={handleParticipantRemove}/>
+          <Participant name={item} onRemove={() => handleParticipantRemove(item)}/>
         )}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
