@@ -1,9 +1,10 @@
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Participant } from "../components/Participant";
 
 import { styles } from "./styles";
 
 export function Home() {
+  const participants = ['João Medeiros', 'Bruna Chagas', 'Douglas Queiroz', 'Gabriel Medeiros', 'Guilherme Gallina', 'Gustavo Medeiros', 'Graça Medeiros', 'Leonardo Almeida', 'Mariana Campos', 'Danilo Campos', 'Luiza Satie', 'Leticia Chagas'];
   
   function handleParticipantAdd() {
     console.log("Você clicou no botão de Adicionar!");
@@ -36,7 +37,13 @@ export function Home() {
           </Text>
         </TouchableOpacity>
       </View>
-      <Participant name="João Medeiros" onRemove={handleParticipantRemove}/>
+      <FlatList 
+        data={participants}
+        keyExtractor={item => item}
+        renderItem={({ item }) => (
+          <Participant name={item} onRemove={handleParticipantRemove}/>
+        )}
+      />
 
     </View>
   )
